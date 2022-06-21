@@ -1,0 +1,16 @@
+/* CSS Document */
+html, body, .wrap {font: normal 14px/1.2em '나눔 고딕',NanumGothic, '맑은 고딕',MalgunGothic, sans-serif;}
+body, html 		{ width:100%; margin:0; padding:0; font-size:14px; line-height:160%; color:#666; font-family:'NotoSansCJKkr', "나눔 바른 고딕","NanuBarunGothic","맑은 고딕","Malgun Gothic","Apple Gothic","돋움",Dotum,"Helvetica Neue",Helvetica,Arial,sans-serif !important; letter-spacing:-1px; }
+div, table, ul, li, ol, dl, dt, dd, h1, h2, h3, h4, h5, h6, p { margin:0; padding:0; font-size:14px; font-weight:normal; list-style:none; font-family: "NotoSansCJKkr","나눔바른고딕","NanumBarunGothic","맑은 고딕","Malgun Gothic","Apple Gothic","돋움",Dotum,"Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+textarea 		{ font-size:14px; color:#000; font-family: 'NotoSansCJKkr',"나눔 바른 고딕","NanumBarunGothic","맑은 고딕","Malgun Gothic","Apple Gothic","돋움",Dotum,"Helvetica Neue",Helvetica,Arial,sans-serif !important; resize:none; border:1px solid #e6e6e6; resize:none;}
+select 			{ font-size:14px; color:#000; font-family:'NotoSansCJKkr', "나눔 바른 고딕","NanumBarunGothic","맑은 고딕","Malgun Gothic","Apple Gothic","돋움",Dotum,"Helvetica Neue",Helvetica,Arial,sans-serif !important; }
+input 			{ font-size:14px; color:#000; font-family: 'NotoSansCJKkr',"나눔 바른 고딕","NanumBarunGothic","맑은 고딕","Malgun Gothic","Apple Gothic","돋움",Dotum,"Helvetica Neue",Helvetica,Arial,sans-serif !important; border:1px solid #ccc; }
+img 			{ border:0; }
+fieldset 		{ border:0; }
+caption			{ font-size:0; }
+
+/* 링크 */
+a:link			{ color:#000; text-decoration:none; }
+a:visited 		{ color:#000; text-decoration:none; }
+a:active 		{ color:#999; text-decoration:none; }
+a:hover 		{ color:#999; text-decoration:none; }

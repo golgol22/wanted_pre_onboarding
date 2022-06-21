@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/public/images/logo.png">
+    <title>ERROR PAGE</title>
+    <style>
+        body {
+            text-align: center;
+        }
+
+        .img {
+            margin-top: 100px;
+        }
+
+        .error-message {
+            font-size: 100px;
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        @media screen and (max-width:768px) {
+            .img {
+                margin-top: 50px;
+                width: 200px;
+                height: 200px;
+            }
+
+            .error-message {
+                font-size: 50px;
+                font-weight: bold;
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <img class="img" src="../public/images/404.png" alt="페이지를 찾을 수 없습니다."/>
+    <p class="error-message">404 not page found</p>
+</body>
+</html>
