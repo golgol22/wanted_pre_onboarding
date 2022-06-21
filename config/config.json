@@ -1,0 +1,29 @@
+{
+  "development": {
+    "username": "wanted",
+    "password": "keroro2424.",
+    "database": "employmentDB",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 8888,
+    "operatorsAliases": false
+  },
+  "test": {
+    "username": "wanted",
+    "password": "keroro2424.",
+    "database": "employmentDB",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 8888,
+    "operatorsAliases": false
+  },
+  "production": {
+    "username": "wanted",
+    "password": "keroro2424.",
+    "database": "employmentDB",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "port": 8888,
+    "operatorsAliases": false
+  }
+}
