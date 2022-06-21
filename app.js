@@ -27,8 +27,11 @@ var cors = require('cors');
 var logger = require('morgan');
 
 // 라우팅 모듈
-var index = require('./routes/index'); // 메인페이지 
-var add = require('./routes/add'); // 채용공고 추가 페이지
+var index = require('./routes/index'); // 메인페이지 (공고리스트, 검색, 삭제)
+var create = require('./routes/create'); // 채용공고 등록 페이지
+var update = require('./routes/update'); // 채용공고 수정 페이지
+var list_detail = require('./routes/list_detail'); // 채용공고 상제 페이지
+var apply = require('./routes/apply'); // 채용공고 지원
 
 // 익스프레스 객체 생성
 var app = express();
@@ -55,7 +58,10 @@ app.use(cors());
 
 // 기능별 라우팅 관리
 app.use('/', index);
-app.use('/add', add);
+app.use('/create', create);
+app.use('/update', update);
+app.use('/list_detail', list_detail);
+app.use('/apply', apply);
 
 // 404 에러 페이지 처리
 var errorHandler = expressErrorHandler({
