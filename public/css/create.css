@@ -1,0 +1,113 @@
+.wrap {
+    width: 100%; 
+    height: 100%; 
+    position: relative; 
+    display: flex; 
+    flex-flow: column nowrap;
+}
+
+.contents-main {
+    top: 100px;
+    position: relative;
+}
+
+.contents-main .contents-container {
+    width: 400px;
+    margin: 0 auto;
+    position: relative;
+    padding-bottom: 100px;
+}
+
+.contents-main .contents-container .contents-title {
+    width: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    line-height: 50px;
+    text-align: left;
+    color: #004771;
+    text-align: center;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+}
+
+.type-text {
+	text-align: left;
+	font-size: 13pt;
+	font-weight: bold;
+	padding: 10px 0;
+}
+
+input {
+	width: 98%;
+	height: 40px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+input:focus {
+	outline: none;
+}
+
+p {
+	font-size: 12pt;
+	color: #004771; 
+	display: none;
+	text-align: left;
+    margin-bottom: 10px;
+}
+
+.input-company {
+	width: 300px;
+	height: 40px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+}
+
+.company-search-button {
+	width: 80px;
+	height: 45px;
+	margin-left: 10px;
+	border-radius: 10px;
+	margin-bottom: 10px;
+	background: #fff;
+	color: #bbb;
+	font-size: 11pt;
+	border: 1px solid #bbb;
+}
+
+.no-data-company {
+    display: none;
+}
+
+.input-contnet {
+	width: 94%;
+	height: 200px;
+	padding: 10px;
+	font-size: 12pt;
+	text-align: left;
+	word-break: break-word;
+    border-radius: 10px;
+	margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.reg-button {
+    width: 100%;
+    height: 60px;
+    border: 1px solid #bbb;
+    border-radius: 10px;
+	margin: 20px 0;
+	background: #eee;
+	color: #bbb;
+	font-size: 12pt;
+}
+
+.active {
+    background: #fff;
+	color: #004771;
+    border: 1px solid #004771;
+}
+
+.p-active {
+	color: #004771;
+}

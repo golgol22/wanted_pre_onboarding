@@ -15,16 +15,16 @@
                     <input type="text" class="contents-search-box" placeholder="검색"/>
                 </div>
                 <div class="line"></div>
-                <% if (postings != null) { %>
+                <% if (postings == "") { %>
                     <div class="no-data-text">등록된 채용 공고가 없습니다.</div>
                 <% } else { %>
                     <div class="contents-item-group">
-                        <% for(var data of postings) { %>
+                        <% for(let data of postings) { %>
                         <div class="contents-item">
-                            <div class="contents-item-name">[회사명] 채용포지션</div>
-                            <div class="contents-item-country">근무지역: 국가 지역</div>
-                            <div class="contents-item-compensation">채용보상금: </div>
-                            <div class="contents-item-skill">사용기술: </div>
+                            <div class="contents-item-name">[<%= data.Company.company_name %>] <%= data.position %></div>
+                            <div class="contents-item-country">근무지역: <%= data.country %> <%= data.area %></div>
+                            <div class="contents-item-compensation">채용보상금: <%= data.compensation %></div>
+                            <div class="contents-item-skill">사용기술: <%= data.skill %></div>
                         </div>
                         <% } %>  
                     </div>

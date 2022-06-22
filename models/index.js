@@ -37,7 +37,7 @@ db.Sequelize = Sequelize;
 db.Company = require('./company')(sequelize,Sequelize)
 db.Posting = require('./posting')(sequelize,Sequelize)
 
-db.Company.hasMany(db.Company, {foreignKey: 'company_id', sourceKey:'id'});
-db.Posting.belongsTo(db.Posting, {foreignKey: 'company_id', targetKey:'id'});
+db.Company.hasMany(db.Posting, {foreignKey: 'company_id', sourceKey:'id'});
+db.Posting.belongsTo(db.Company, {foreignKey: 'company_id', sourceKey:'id'});
 
 module.exports = db;

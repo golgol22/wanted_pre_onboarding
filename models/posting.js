@@ -14,6 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       Posting.belongsTo(models.Company, {
         foreignKey: { name: "company_id", allowNull: false },
         onDelete: "CASCADE",
+        onUpdate: "CASCADE"
       });
     }
   }

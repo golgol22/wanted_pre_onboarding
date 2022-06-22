@@ -2,7 +2,7 @@
  * 
  * 채용공고 사이트
  *
- * 사용 기술: html, css, jQuery, ajax, nodejs
+ * 사용 기술: html, css, jQuery, ajax, nodejs(express) orm
  * 웹서버 실행 : 명령프롬프트에서 node app.js 실행
  * 기능: 채용공고 목록확인 및 검색, 등록, 수정, 삭제, 채용공고 상세, 채용공고 지원
  * 
@@ -23,12 +23,20 @@ var expressErrorHandler = require('express-error-handler')
 // 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
 var cors = require('cors')
 
+// mime 모듈
+var mime = require('mime');
+
 // 로그
 var logger = require('morgan')
 
+// sequelize
+const { sequelize } = require('./models')
+
 // 라우팅 모듈
 var index = require('./routes/index') // 메인페이지 (공고리스트, 검색, 삭제)
-// var create = require('./routes/create') // 채용공고 등록 페이지
+var create = require('./routes/create') // 채용공고 등록 페이지
+var company_search_action = require('./routes/company_search_action') // 채용공고 등록 회사 검색 처리
+var reg_posting_action = require('./routes/reg_posting_action') // 채용공고 등록 처리 
 // var update = require('./routes/update') // 채용공고 수정 페이지
 // var list_detail = require('./routes/list_detail') // 채용공고 상제 페이지
 // var apply = require('./routes/apply') // 채용공고 지원
@@ -54,17 +62,17 @@ app.use(bodyParser.json())
 app.use('/public', static(path.join(__dirname, 'public')))
 
 // 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
-app.use(cors());
+app.use(cors())
 
 // 기능별 라우팅 관리
 app.use('/', index)
-// app.use('/create', create)
+app.use('/create', create)
+app.use('/company_search_action', company_search_action)
+app.use('/reg_posting_action', reg_posting_action)
 // app.use('/update', update)
 // app.use('/list_detail', list_detail)
 // app.use('/apply', apply)
 
-// sequelize
-const { sequelize } = require('./models')
 sequelize.sync()
 
 // 404 에러 페이지 처리
