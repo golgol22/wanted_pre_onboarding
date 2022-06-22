@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <%- include ('../views/head') %>
+    <link type="text/css" rel="stylesheet" href="/public/css/update.css"> 
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <title>채용공고 - 등록</title>
+</head>
+<body>
+    <div class="wrap">
+       <%- include ('../views/header') %>
+        <div class="contents-main">
+            <div class="contents-container">
+                <div class="contents-title">채용공고 등록</div>
+				<div class="type-text">회사명</div>
+				<input class="input-company" type="text" placeholder="회사명을 입력해주세요.">
+				<button class="company-search-button" disabled="disabled">검색</button>
+				<p class="warning-company"></p>
+				
+                <div class="no-data-company">
+                    <div class="type-text">주소</div>
+                    <input class="input-address" id="input-address" type="text" placeholder="주소를 입력해주세요.">
+                    <p class="warning-address"></p>
+                    
+                    <div class="type-text">전화번호</div>
+                    <input class="input-tel" type="text" placeholder="전화번호를 입력해주세요.">
+                    <p class="warning-tel"></p>
+                </div>
+
+                <div class="type-text">채용 포지션</div>
+                <input class="input-position" type="text" placeholder="채용포지션을 입력해주세요.">
+                <p class="warning-position"></p>
+
+                <div class="type-text">채용 기술</div>
+                <input class="input-skill" type="text" placeholder="채용기술을 입력해주세요.">
+                <p class="warning-skill"></p>
+
+                <div class="type-text">채용 내용</div>
+                <textarea class="input-contnet" rows="7" placeholder="채용내용을 입력해주세요."></textarea>
+                <p class="warning-contnet"></p>
+
+                <div class="type-text">근무 국가</div>
+                <input class="input-country"  placeholder="근무 국가를 입력해주세요.">
+                <p class="warning-country"></p>
+
+                <div class="type-text">근무 지역</div>
+                <input class="input-area" placeholder="근무 지역을 입력해주세요.">
+                <p class="warning-area"></p>
+
+                <div class="type-text">채용 보상금</div>
+                <input class="input-compensation" type="text" placeholder="채용보상금을 입력해주세요.">
+                <p class="warning-compensation"></p>
+                <button class="reg-button" disabled="disabled">채용공고 등록하기</button>
+            </div>
+        <%- include ('../views/footer') %>
+    </div>
+</body>
+<script type="text/javascript">
+let company_name = ""
+let company_id = -999
+let company_infor = 0
+let position = ""
+let skill = ""
+let content = ""
+let country = ""
+let area = ""
+let compensation = 0
+let address = ""
+let tel = ""
+
+$(document).on("propertychange change keyup paste input", ".input-company", function(){ 
+    company_name = $(".input-company").val()
+    if (company_name != "") {
+        $(".company-search-button").attr("disabled", false)
+        $(".company-search-button").addClass("active")
+    } else {
+        $(".company-search-button").attr("disabled", true)
+        $(".company-search-button").removeClass("active")
+    }
+});
+
+// 회사 검색
+$(document).on("click", ".company-search-button", function(){ 
+    company_name = $(".input-company").val()
+    let company_data = { "company_name": company_name }
+
+    $.ajax ({
+        method: "get",
+        url: "/company_search_action",
+        data: company_data,
+        datatype: "json",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function(data) {
+            console.log(data.result)
+            if (data.result != -1) {
+                $(".warning-company").text("등록된 회사 정보가 있습니다.")
+                $(".warning-company").css("display", "block")
+                $(".warning-company").addClass("p-active")
+                company_id = data.result
+                console.log('>> ' + company_id)
+                company_infor = 1
+            } else {
+                $(".warning-company").text("회사 정보가 없습니다.")
+                $(".warning-company").css("display", "block")
+                $(".warning-company").removeClass("p-active")
+                $(".no-data-company").css("display", "block")
+                company_infor = 0
+            }
+        }
+    })
+});
+
+$(document).on("propertychange change keyup paste input", "input, textarea", function(){ 
+    company_name = $(".input-company").val()
+    address = $(".input-address").val()
+    tel = $(".input-tel").val()
+    position = $(".input-position").val()
+    skill = $(".input-skill").val()
+    content = $(".input-content").val()
+    country = $(".input-country").val()
+    area = $(".input-area").val()
+    compensation = $(".input-compensation").val()
+
+    if (company_name != "" && position != "" && skill != "" && content != "" && compensation != "") {
+        if (company_infor == 1 || (address != "" && tel != "")) {
+            $(".reg-button").attr("disabled", false)
+            $(".reg-button").addClass("active")
+        } 
+    } 
+});
+
+// 채용공고 등록
+$(document).on("click", ".reg-button", function(){ 
+    let reg_data = {
+        "company_id": company_id,
+        "company_name": company_name,
+        "address": address,
+        "tel": tel,
+        "position": position,
+        "skill": skill,
+        "content": content,
+        "country": country,
+        "area": area,
+        "compensation": Number(compensation.replace(",", ""))
+    }
+    console.log(reg_data)
+
+    $.ajax ({
+        method: "get",
+        url: "/reg_posting_action",
+        data: reg_data,
+        datatype: "json",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function(data) {
+            if (data.result == 1) {
+                alert("등록에 실패하였습니다.")
+            } else {
+                alert("등록되었습니다.")
+                location.href = "/"
+            }
+        }
+    })
+});
+
+// 주소검색 (카카오 api 사용)
+window.onload = function(){
+    document.getElementById("input-address").addEventListener("click", function(){ // 주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { // 선택시 입력값 세팅
+                document.getElementById("input-address").value = data.address; // 주소 넣기
+                // document.querySelector("#input_addr_detail").focus(); // 상세입력 포커싱
+            }
+        }).open();
+    });
+}
+</script>
+</html>

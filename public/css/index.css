@@ -93,3 +93,23 @@
     font-weight: bold;
     padding-bottom: 10px;
 }
+
+.contents-item .contents-item-name:hover {
+    text-decoration: underline;
+}
+
+.contents-item button {
+    width: 120px;
+    height: 40px;
+    font-size: 12pt;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 0px;
+    background: #004771;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.contents-item .update-button {
+    margin-right: 10px;
+}

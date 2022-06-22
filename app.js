@@ -37,9 +37,11 @@ var index = require('./routes/index') // 메인페이지 (공고리스트, 검�
 var create = require('./routes/create') // 채용공고 등록 페이지
 var company_search_action = require('./routes/company_search_action') // 채용공고 등록 회사 검색 처리
 var reg_posting_action = require('./routes/reg_posting_action') // 채용공고 등록 처리 
-// var update = require('./routes/update') // 채용공고 수정 페이지
-// var list_detail = require('./routes/list_detail') // 채용공고 상제 페이지
-// var apply = require('./routes/apply') // 채용공고 지원
+var update = require('./routes/update') // 채용공고 수정 페이지
+var update_action = require('./routes/update') // 채용공고 수정 처리
+var delete_action = require('./routes/delete_action') // 채용공고 삭제 처리
+var list_detail = require('./routes/list_detail') // 채용공고 상세 페이지
+var apply_action = require('./routes/apply_action') // 채용공고 지원 처리
 
 // 익스프레스 객체 생성
 var app = express()
@@ -69,9 +71,11 @@ app.use('/', index)
 app.use('/create', create)
 app.use('/company_search_action', company_search_action)
 app.use('/reg_posting_action', reg_posting_action)
-// app.use('/update', update)
-// app.use('/list_detail', list_detail)
-// app.use('/apply', apply)
+app.use('/update', update)
+app.use('/update_action', update_action)
+app.use('/delete_action', delete_action)
+app.use('/list_detail', list_detail)
+app.use('/apply_action', apply_action)
 
 sequelize.sync()
 
