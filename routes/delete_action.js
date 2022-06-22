@@ -8,19 +8,13 @@ const models = require('../models')
 
 // get으로 요청올 때 router에 연결
 router.get('/', function(req, res) {
-    let company_name = req.query.company_name
-    models.Company.findOne({
-        attributes: ['id'],
+    let id = req.query.id
+    models.Posting.destroy({
         where: {
-            company_name: company_name
+            id: id
         }
-    }).then( result => {
-        if (result != null) {
-            res.send({result: result.getDataValue('id')})
-        } else {
-            res.send({result: -1})
-        }
-        
+    }).then( () => {
+        res.send({result: 0})
     }).catch(function(err) {
         console.log(err)
     })

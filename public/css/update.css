@@ -56,30 +56,7 @@ p {
     margin-bottom: 10px;
 }
 
-.input-company {
-	width: 300px;
-	height: 40px;
-	border-radius: 10px;
-	margin-bottom: 10px;
-}
-
-.company-search-button {
-	width: 80px;
-	height: 45px;
-	margin-left: 10px;
-	border-radius: 10px;
-	margin-bottom: 10px;
-	background: #fff;
-	color: #bbb;
-	font-size: 11pt;
-	border: 1px solid #bbb;
-}
-
-.no-data-company {
-    display: none;
-}
-
-.input-contnet {
+.input-content {
 	width: 94%;
 	height: 200px;
 	padding: 10px;
@@ -91,21 +68,15 @@ p {
     margin-right: 10px;
 }
 
-.reg-button {
+.update-button {
     width: 100%;
     height: 60px;
-    border: 1px solid #bbb;
     border-radius: 10px;
 	margin: 20px 0;
-	background: #eee;
-	color: #bbb;
+    background: #004771;
+	color: #fff;
+    border: 0;
 	font-size: 12pt;
-}
-
-.active {
-    background: #fff;
-	color: #004771;
-    border: 1px solid #004771;
 }
 
 .p-active {

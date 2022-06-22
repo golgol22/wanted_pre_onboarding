@@ -36,8 +36,8 @@
                 <p class="warning-skill"></p>
 
                 <div class="type-text">채용 내용</div>
-                <textarea class="input-contnet" rows="7" placeholder="채용내용을 입력해주세요."></textarea>
-                <p class="warning-contnet"></p>
+                <textarea class="input-content" rows="7" placeholder="채용내용을 입력해주세요."></textarea>
+                <p class="warning-content"></p>
 
                 <div class="type-text">근무 국가</div>
                 <input class="input-country"  placeholder="근무 국가를 입력해주세요.">
@@ -48,7 +48,7 @@
                 <p class="warning-area"></p>
 
                 <div class="type-text">채용 보상금</div>
-                <input class="input-compensation" type="text" placeholder="채용보상금을 입력해주세요.">
+                <input class="input-compensation" type="number" placeholder="채용보상금을 입력해주세요.">
                 <p class="warning-compensation"></p>
                 <button class="reg-button" disabled="disabled">채용공고 등록하기</button>
             </div>
@@ -121,7 +121,7 @@ $(document).on("propertychange change keyup paste input", "input, textarea", fun
     area = $(".input-area").val()
     compensation = $(".input-compensation").val()
 
-    if (company_name != "" && position != "" && skill != "" && content != "" && compensation != "") {
+    if (company_name != "" && position != "" && skill != "" && content != "" && country != "" && area != "" && compensation != "") {
         if (company_infor == 1 || (address != "" && tel != "")) {
             $(".reg-button").attr("disabled", false)
             $(".reg-button").addClass("active")
@@ -141,7 +141,7 @@ $(document).on("click", ".reg-button", function(){
         "content": content,
         "country": country,
         "area": area,
-        "compensation": Number(compensation.replace(",", ""))
+        "compensation": compensation
     }
     console.log(reg_data)
 
@@ -169,7 +169,6 @@ window.onload = function(){
         new daum.Postcode({
             oncomplete: function(data) { // 선택시 입력값 세팅
                 document.getElementById("input-address").value = data.address; // 주소 넣기
-                // document.querySelector("#input_addr_detail").focus(); // 상세입력 포커싱
             }
         }).open();
     });

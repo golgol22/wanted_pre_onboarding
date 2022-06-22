@@ -20,7 +20,6 @@ router.get('/', function(req, res) {
         } else {
             res.send({result: -1})
         }
-        
     }).catch(function(err) {
         console.log(err)
     })

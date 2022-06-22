@@ -8,19 +8,19 @@ const models = require('../models')
 
 // get으로 요청올 때 router에 연결
 router.get('/', function(req, res) {
-    let company_name = req.query.company_name
-    models.Company.findOne({
-        attributes: ['id'],
-        where: {
-            company_name: company_name
-        }
+    models.Posting.update(
+        { 
+            country : req.query.country,
+            area: req.query.area,
+            position: req.query.position,
+            compensation: req.query.compensation,
+            content: req.query.content,
+            skill: req.query.skill
+        },
+        { 
+            where: { id: req.query.id } 
     }).then( result => {
-        if (result != null) {
-            res.send({result: result.getDataValue('id')})
-        } else {
-            res.send({result: -1})
-        }
-        
+        res.send({result: 0})
     }).catch(function(err) {
         console.log(err)
     })
