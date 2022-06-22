@@ -79,7 +79,7 @@ p {
     display: none;
 }
 
-.input-contnet {
+.input-content {
 	width: 94%;
 	height: 200px;
 	padding: 10px;
@@ -103,9 +103,9 @@ p {
 }
 
 .active {
-    background: #fff;
-	color: #004771;
-    border: 1px solid #004771;
+    background: #004771;
+	color: #fff;
+    border: 0;
 }
 
 .p-active {

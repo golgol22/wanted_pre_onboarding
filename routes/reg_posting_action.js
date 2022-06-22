@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
     let position = req.query.position
     let skill = req.query.skill
     let content = req.query.content
-    let counry = req.query.counry
+    let country = req.query.country
     let area = req.query.area
     let compensation = req.query.compensation
     let result = 0
@@ -43,7 +43,7 @@ router.get('/', function(req, res) {
     } 
 
     models.Posting.create({
-        counry: counry,
+        country: country,
         area: area,
         position: position,
         compensation: compensation,

@@ -10,13 +10,48 @@
        <%- include ('../views/header') %>
         <div class="contents-main">
             <div class="contents-container">
-                <div class="contents-title">채용공고</div>
-                <div class="line"></div>
+                <div class="contents-group">
+                    <div class="contents-group-header">
+                        <div class="contents-title">채용공고</div>
+                        <button class="apply-button" onclick="apply_posting('<%= detail_posting.id %>')">지원하기</button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="contents-item">
+                        <div class="contents-item-name">[<%= detail_posting.Company.company_name %>] <%= detail_posting.position %></div>
+                        <div class="contents-item-country">근무지역: <%= detail_posting.country %>, <%= detail_posting.area %></div>
+                        <div class="contents-item-skill">사용기술: <%= detail_posting.skill %></div>
+                        <div class="contents-item-content">내용: <%= detail_posting.content %></div>
+                        <div class="contents-item-compensation">채용보상금: <%= detail_posting.compensation %></div>
+                        <div class="contents-item-address">회사 주소: <%= detail_posting.Company.address %></div>
+                        <div class="contents-item-tel">회사 번호: <%= detail_posting.Company.tel %></div>
+                    </div>
+                </div>
+                <div class="contents-group">
+                    <div class="contents-title">보고 있는 회사에서 진행중인 다른 채용공고</div>
+                    <div class="line"></div>
+                    <% if (postings == "") { %>
+                        <div class="no-data-text">등록된 다른 채용 공고가 없습니다.</div>
+                    <% } else { %>
+                        <div class="contents-item-group">
+                            <% for(let data of postings) { %>
+                            <div class="contents-item">
+                                <div class="contents-item-name" onclick="show_detail('<%= data.id %>')">[<%= data.Company.company_name %>] <%= data.position %></div>
+                                <div class="contents-item-country">근무지역: <%= data.country %>, <%= data.area %></div>
+                                <div class="contents-item-skill">사용기술: <%= data.skill %></div>
+                                <div class="contents-item-compensation">채용보상금: <%= data.compensation %></div>
+                            </div>
+                            <% } %>  
+                        </div>
+                    <% } %>
+                </div>
             </div>
         <%- include ('../views/footer') %>
     </div>
 </body>
 <script type="text/javascript">
-
+// 자세히 보기 
+function show_detail(id) {
+    location.href = "/list_detail?id=" + id
+}
 </script>
 </html>
