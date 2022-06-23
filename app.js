@@ -42,6 +42,8 @@ var update_action = require('./routes/update_action') // 채용공고 수정 처
 var delete_action = require('./routes/delete_action') // 채용공고 삭제 처리
 var list_detail = require('./routes/list_detail') // 채용공고 상세 페이지
 var apply_action = require('./routes/apply_action') // 채용공고 지원 처리
+var search_action = require('./routes/search_action') // 채용공고 검색 처리
+
 
 // 익스프레스 객체 생성
 var app = express()
@@ -76,7 +78,9 @@ app.use('/update_action', update_action)
 app.use('/delete_action', delete_action)
 app.use('/list_detail', list_detail)
 app.use('/apply_action', apply_action)
+app.use('/search_action', search_action)
 
+// sequelize
 sequelize.sync()
 
 // 404 에러 페이지 처리

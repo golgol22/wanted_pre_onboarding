@@ -6,8 +6,7 @@ const router = express.Router()
 // db models
 const models = require('../models')
 const company = models['Company']
-
-const { Op } = require("sequelize");
+const { Op } = require("sequelize")
 
 // get으로 요청올 때 router에 연결
 router.get('/', async(req, res) => {

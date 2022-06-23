@@ -15,10 +15,13 @@
                     <input type="text" class="contents-search-box" placeholder="검색"/>
                 </div>
                 <div class="line"></div>
-                <% if (postings == "") { %>
-                    <div class="no-data-text">등록된 채용 공고가 없습니다.</div>
-                <% } else { %>
-                    <div class="contents-item-group">
+                <div class="no-data">
+                    <% if (postings == "") { %>
+                        <div class="no-data-text">등록된 채용 공고가 없습니다.</div>
+                    <% } %>
+                </div>
+                <div class="contents-item-group">
+                    <% if (postings != "") { %>
                         <% for(let data of postings) { %>
                         <div class="contents-item">
                             <div class="contents-item-name" onclick="show_detail('<%= data.id %>')">[<%= data.Company.company_name %>] <%= data.position %></div>
@@ -29,13 +32,49 @@
                             <button class="delete-button" onclick="delete_posting('<%= data.id %>')">삭제</button>
                         </div>
                         <% } %>  
-                    </div>
-                <% } %>
+                    <% } %>
+                </div>
             </div>
         <%- include ('../views/footer') %>
     </div>
 </body>
 <script type="text/javascript">
+// 검색
+$(document).on("propertychange change keyup paste input", ".contents-search-box", function(){ 
+    let search = $(".contents-search-box").val().trim()
+    $.ajax ({
+        method: "get",
+        url: "/search_action",
+        data: { "search": search },
+        datatype: "json",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function(data) {
+            $(".contents-item-group").html("")
+            $(".no-data").html("")
+            if (data.result.length == 0) {
+                $(".no-data").append("<div class='no-data-text'>검색결과가 없습니다.</div>")
+            } else {
+                $(".contents-item-group").append(drawingSearchList(data.result))
+            }
+        }
+    })
+})
+
+function drawingSearchList(data_result) {
+	let addTag = ""
+	$.each(data_result, function(index, data){
+		addTag += "<div class='contents-item'>"
+   			+ "<div class='contents-item-name' onclick=\"show_detail('" + data['id'] + "')\">[" + data['Company']['company_name'] + "]" + data['position'] + "</div>"
+            + "<div class='contents-item-country'>근무지역: " + data['country'] + ", " + data['area'] + "</div>"
+            + "<div class='contents-item-skill'>사용기술: " + data['skill'] + "</div>"
+            + "<div class='contents-item-compensation'>채용보상금: " + data['compensation'] + "</div>"
+            + "<button class='update-button' onclick=\"update_posting('" + data['id'] + "')\">수정</button>"
+            + "<button class='delete-button' onclick=\"delete_posting('" + data['id'] + "')\">삭제</button>"
+            + "</div>"
+    })
+    return addTag
+}
+
 // 자세히 보기 
 function show_detail(id) {
     location.href = "/list_detail?id=" + id

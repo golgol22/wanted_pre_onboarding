@@ -7,7 +7,7 @@ const router = express.Router()
 const models = require('../models')
 
 // get으로 요청올 때 router에 연결
-router.get('/', function(req, res) {
+router.get('/', async(req, res) => {
     let company_id = req.query.company_id
     let company_name = req.query.company_name
     let address = req.query.address
@@ -23,7 +23,7 @@ router.get('/', function(req, res) {
 
     // 등록된 회사 정보가 없는 경우
     if (company_id == -999) { 
-        models.Company.create({
+        await models.Company.create({
             company_name: company_name,
             address: address,
             tel: tel
@@ -32,7 +32,7 @@ router.get('/', function(req, res) {
             result = 1
         })
 
-        company_id_data = models.Company.findOne({
+        company_id_data = await models.Company.findOne({
             attributes: ['id'],
             order: [['id', 'DESC']]
         }).catch(function(err){
@@ -42,7 +42,7 @@ router.get('/', function(req, res) {
         company_id = company_id_data.getDataValue('id')
     } 
 
-    models.Posting.create({
+    await models.Posting.create({
         country: country,
         area: area,
         position: position,

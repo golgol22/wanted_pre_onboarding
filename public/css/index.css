@@ -52,6 +52,7 @@
 }
 
 .contents-main .contents-container .no-data-text {
+    width: 100%;
     line-height: 50px;
     font-size: 15pt;
     font-weight: bold;
