@@ -53,5 +53,24 @@
 function show_detail(id) {
     location.href = "/list_detail?id=" + id
 }
+
+// 지원하기
+function apply_posting(id) {
+    let member_id = prompt("사용자 id를 입력해주세요")
+
+    $.ajax ({
+        method: "get",
+        url: "/apply_action",
+        data: { "member_id": member_id, "id": id },
+        datatype: "json",
+        contentType: "application/x-www-form-urlencoded; charset=utf-8",
+        success: function(data) {
+            if (data.result == 0) {
+                alert("지원이 완료되었습니다.")
+                $(".apply-button").text('지원완료')
+            }
+        }
+    })
+}
 </script>
 </html>

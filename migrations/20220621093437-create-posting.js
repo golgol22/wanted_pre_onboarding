@@ -12,27 +12,34 @@ module.exports = {
         allowNull: false,
         type: Sequelize.INTEGER,
         onDelete: "CASCADE",
+        onUpdate: "CASCADE",
         references: {
           model: "Company",
-          key: "id",
+          key: "id"
         },
       },
       country: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       area: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       position: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       compensation: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       content: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       skill: {
+        allowNull: false,
         type: Sequelize.STRING
       },
       createdAt: {
