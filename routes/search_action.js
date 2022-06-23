@@ -17,11 +17,11 @@ router.get('/', function(req, res) {
         include: [{
             model: company,
             attributes: ['company_name'],
-            required: false
+            required: true
         }],
         where: {
             [Op.or]: [
-                // { company_name: { [Op.like]: search } },
+                { '$company.company_name$': { [Op.like]: search } },
                 { country: { [Op.like]: search } },
                 { area: { [Op.like]: search } },
                 { position: { [Op.like]: search } },
@@ -29,7 +29,8 @@ router.get('/', function(req, res) {
                 { content: { [Op.like]: search } },
                 { skill: { [Op.like]: search } }
             ]
-        }
+        },
+        required: true
     }).then( result => {
         console.log(result)
         res.send({result: result}) 
