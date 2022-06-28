@@ -9,44 +9,44 @@
  */
 
 // Express 기본 모듈 불러오기
-var express = require('express')
-var http = require('http')
-var path = require('path')
+const express = require('express')
+const http = require('http')
+const path = require('path')
 
 // Express의 미들웨어 불러오기
-var bodyParser = require('body-parser')
-var static = require('serve-static')
+const bodyParser = require('body-parser')
+const static = require('serve-static')
 
 // 에러 핸들러 모듈 사용
-var expressErrorHandler = require('express-error-handler')
+const expressErrorHandler = require('express-error-handler')
 
 // 클라이언트에서 ajax로 요청 시 CORS(다중 서버 접속) 지원
-var cors = require('cors')
+const cors = require('cors')
 
 // mime 모듈
-var mime = require('mime');
+const mime = require('mime');
 
 // 로그
-var logger = require('morgan')
+const logger = require('morgan')
 
 // sequelize
 const { sequelize } = require('./models')
 
 // 라우팅 모듈
-var index = require('./routes/index') // 메인페이지 (공고리스트, 검색, 삭제)
-var create = require('./routes/create') // 채용공고 등록 페이지
-var company_search_action = require('./routes/company_search_action') // 채용공고 등록 회사 검색 처리
-var reg_posting_action = require('./routes/reg_posting_action') // 채용공고 등록 처리 
-var update = require('./routes/update') // 채용공고 수정 페이지
-var update_action = require('./routes/update_action') // 채용공고 수정 처리
-var delete_action = require('./routes/delete_action') // 채용공고 삭제 처리
-var list_detail = require('./routes/list_detail') // 채용공고 상세 페이지
-var apply_action = require('./routes/apply_action') // 채용공고 지원 처리
-var search_action = require('./routes/search_action') // 채용공고 검색 처리
+const index = require('./routes/index') // 메인페이지 (공고리스트, 검색, 삭제)
+const create = require('./routes/create') // 채용공고 등록 페이지
+const company_search_action = require('./routes/company_search_action') // 채용공고 등록 회사 검색 처리
+const reg_posting_action = require('./routes/reg_posting_action') // 채용공고 등록 처리 
+const update = require('./routes/update') // 채용공고 수정 페이지
+const update_action = require('./routes/update_action') // 채용공고 수정 처리
+const delete_action = require('./routes/delete_action') // 채용공고 삭제 처리
+const list_detail = require('./routes/list_detail') // 채용공고 상세 페이지
+const apply_action = require('./routes/apply_action') // 채용공고 지원 처리
+const search_action = require('./routes/search_action') // 채용공고 검색 처리
 
 
 // 익스프레스 객체 생성
-var app = express()
+const app = express()
 
 // 포트 설정
 app.set('port', process.env.PORT || 3002)
@@ -84,7 +84,7 @@ app.use('/search_action', search_action)
 sequelize.sync()
 
 // 404 에러 페이지 처리
-var errorHandler = expressErrorHandler({
+const errorHandler = expressErrorHandler({
 	static: {
 		'404': './views/404.ejs'
 	}
@@ -94,6 +94,6 @@ app.use(expressErrorHandler.httpError(404))
 app.use(errorHandler)
 
 // 웹서버 시작
-var server = http.createServer(app).listen(app.get('port'), function () {
-	console.log('### 웹 서버 시작됨 -> %s', server.address())
+const server = http.createServer(app).listen(app.get('port'), function () {
+	console.log('>> 웹 서버 시작 -> %s', server.address())
 })
